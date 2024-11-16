@@ -70,7 +70,7 @@ function CreateTaskDialog({ open, setOpen, collection }: Props) {
             Add task to collection:
             <span
               className={cn(
-                "p-[1px] bg-clip-text text-transparent",
+                "p-[1px] bg-clip-text text-transparent", // @ts-expect-error" color
                 CollectionColors[collection.color as CollectionColors]
               )}
             >
