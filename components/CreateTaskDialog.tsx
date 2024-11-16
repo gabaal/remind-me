@@ -151,7 +151,7 @@ function CreateTaskDialog({ open, setOpen, collection }: Props) {
           <Button
             disabled={form.formState.isSubmitting}
             className={cn(
-              "w-full dark:text-white text-white",
+              "w-full dark:text-white text-white", // @ts-expect-error colors
               CollectionColors[collection.color as CollectionColor]
             )}
             onClick={form.handleSubmit(onSubmit)}
