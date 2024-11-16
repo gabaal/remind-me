@@ -92,15 +92,7 @@ function CollectionCard({ collection }: Props) {
               onClick={() => setShowCreateModal(true)}
             >
               <p>There are no tasks yet: </p>
-              <span
-                className={cn(
-                  "text-sm bg-clip-text text-transparent",
-
-                  CollectionColors[collection.color as CollectionColors] // eslint-disable-line
-                )}
-              >
-                Create one
-              </span>
+              <span className={cn("text-sm bg-clip-text")}>Create one</span>
             </Button>
           )}
           {tasks.length > 0 && (
