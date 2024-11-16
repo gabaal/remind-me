@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { ClerkProvider } from "@clerk/nextjs";
+import { Separator } from "@/components/ui/separator";
+import NavBar from "@/components/NavBar";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,12 +20,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={cn(inter.className, "dark")}
+        style={{ colorScheme: "dark" }}
       >
-        {children}
-      </body>
-    </html>
+        <body>
+          <ThemeProvider>
+            <div className="flex min-h-screen w-full flex-col items-center dark:bg-black">
+              <NavBar />
+              <Separator />
+              <main className="flex flex-grow w-full justify-center items-center dark:bg-neutral-950">
+                {children}
+                <Toaster />
+              </main>
+            </div>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
